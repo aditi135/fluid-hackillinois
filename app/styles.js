@@ -48,6 +48,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'white',
   },
+  text: {
+    fontFamily: 'Lexend',
+    fontSize: 20,
+    marginBottom: 20,
+  },
 });
 
 export default styles;
