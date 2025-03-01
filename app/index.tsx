@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, Button, StyleSheet, Alert, Dimensions } from 'react-native';
 import Wave from 'react-native-waves'; // Import the Wave component
+import { useRouter } from 'expo-router'; // Importing useRouter for navigation
+
 
 export default function Index() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();  // This is how to get the router instance
 
   // Handle login
   const handleLogin = () => {
@@ -12,7 +15,9 @@ export default function Index() {
       Alert.alert('Error', 'Please enter both username and password');
     } else {
       Alert.alert('Login Successful', `Welcome, ${username}!`);
-      // You can perform any additional logic here like redirecting to another screen
+      
+      // Navigate to the "home" screen after successful login
+      router.push('pages/home');  // This will push to the /home route
     }
   };
 
