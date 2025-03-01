@@ -10,27 +10,27 @@ const HealthBar = ({ label, totalDebt, paidAmount }) => {
   const percentage = totalDebt > 0 ? (paidAmount / totalDebt) * 100 : 0;
 
   return (
-    <View style={styles.healthBarContainer}>
-      <Text style={styles.debtText}>{label}</Text>
+    <View style={stylesLocal.healthBarContainer}>
+      <Text style={stylesLocal.debtText}>{label}</Text>
 
       {/* Horizontal Thermometer with a clean liquid fill */}
-      <View style={styles.thermometer}>
+      <View style={stylesLocal.thermometer}>
         {/* Empty part of the thermometer tube */}
-        <View style={styles.emptyBar}>
+        <View style={stylesLocal.emptyBar}>
           {/* Filled part of the thermometer (liquid) */}
           <View
-            style={[styles.filledBar, { width: `${percentage}%` }]} // Dynamically set the width based on the calculated percentage
+            style={[stylesLocal.filledBar, { width: `${percentage}%` }]} // Dynamically set the width based on the calculated percentage
           />
         </View>
       </View>
 
       {/* Display the calculated percentage for reference */}
-      <Text style={styles.percentageText}>{percentage.toFixed(1)}%</Text>
+      <Text style={stylesLocal.percentageText}>{percentage.toFixed(1)}%</Text>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const stylesLocal = StyleSheet.create({
   healthBarContainer: {
     alignItems: 'center',
     marginHorizontal: 10,
