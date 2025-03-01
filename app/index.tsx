@@ -18,7 +18,7 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      {/* First Wave container with half the screen height */}
+      {/* First Wave container */}
       <View style={styles.waveContainer}>
         <Wave
           placement="bottom"  // Position wave at the bottom of the container
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   secondWaveContainer: {
     position: 'absolute',  // Position the second wave container absolutely
-    bottom: 0,  // Position it at the bottom of the screen, behind the first wave
+    bottom: 100,  // Position it at the bottom of the screen, behind the first wave
     width: '100%',
     height: waveHeight,  // Half of the screen height
     zIndex: -1,  // Put the second wave behind the first wave
