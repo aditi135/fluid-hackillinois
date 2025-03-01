@@ -5,12 +5,6 @@ import NavBar from '../../components/NavBar'; // Import the NavBar component
 import secrets from "../globals/secrets"
 import styles from "../styles"
 
-const express = require('express');
-const app = express();
-const internalRoutes = require('../../backend-server/server');
-
-app.use('/api', internalRoutes);
-
 export default function Future() {
     const [modalVisible, setModalVisible] = useState(false);
     const [goal, setGoal] = useState("");
@@ -31,23 +25,6 @@ export default function Future() {
         setGoal("");
         setCost("");
     };
-
-    const fetchGreetMessage = async () => {
-        try {
-          const response = await fetch('http://localhost:3000/api/greet');
-          const data = await response.json();
-          setTest(data.message);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-    
-      useEffect(() => {
-        fetchGreetMessage();
-      }, []);
-    
-
-
     
     return (
         <ScrollView style={styles.stepContainer}>
