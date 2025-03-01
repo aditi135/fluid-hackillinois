@@ -2,6 +2,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import NavBar from '../../components/NavBar'; // Import the NavBar component
+<<<<<<< HEAD
 import HealthBar from '../../components/HealthBar'; // Import the Thermometer-themed HealthBar component
 
 const { height, width } = Dimensions.get('window'); // Get screen dimensions
@@ -14,9 +15,13 @@ export default function Debts() {
   const thermometerWidth = width * 0.3; // 30% of screen width for each thermometer
   const totalThermometerWidth = thermometerWidth * 2 + 20; // 2 thermometers + spacing between them
   const availableSpace = width - totalThermometerWidth; // Space remaining on the left
+=======
+import styles from '../styles';
+>>>>>>> past
 
   return (
     <View style={styles.container}>
+<<<<<<< HEAD
       {/* Title container to center the title dynamically */}
       <View style={[styles.titleContainer, { width: availableSpace }]}>
         <Text style={styles.title}>Debts</Text>
@@ -35,12 +40,16 @@ export default function Debts() {
       <Text style={styles.text}>Past Tab</Text>
       
       {/* Navigation bar */}
+=======
+      <Text style={styles.logo}>fluid</Text>
+>>>>>>> past
       <Text style={styles.text}>Past</Text>
-
+      
       <NavBar />
     </View>
   );
 }
+<<<<<<< HEAD
 
 const styles = StyleSheet.create({
   container: {
@@ -73,3 +82,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
+=======
+>>>>>>> past

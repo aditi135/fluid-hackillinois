@@ -2,6 +2,18 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  logo: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 20,
+    color:'#507DBC',
+    fontSize: 72,
+    fontWeight: 'bold',
+    fontFamily: 'Zain',
+  },
   container: {
     fontFamily: 'Lexend',
     flex: 1,
@@ -28,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: 'bold',
     fontFamily: 'Zain',
-    color: 'white', // White text for the title
+    color: '#04080F',
     marginBottom: 40,
     zIndex: 1,
   },
@@ -47,6 +59,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderRadius: 5,
     backgroundColor: 'white',
+  },
+  text: {
+    fontFamily: 'Lexend',
+    fontSize: 20,
+    marginBottom: 20,
   },
 });
 
