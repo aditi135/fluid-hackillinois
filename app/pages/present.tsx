@@ -7,7 +7,7 @@ export default function Present() {
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>fluid</Text>
-      <Text style={styles.text}>Present Tab</Text>
+      <Text style={styles.title}>Present Tab</Text>
       <NavBar />
 
     </View>
