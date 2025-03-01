@@ -1,19 +1,15 @@
 // app/home.tsx
 import React from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router'; // Import useRouter for navigation
+import { Text, View, StyleSheet } from 'react-native';
+import NavBar from '../../components/NavBar'; // Import the NavBar component
 
 export default function Home() {
-  const router = useRouter(); // Use the useRouter hook for navigation
-
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Home Page</Text>
 
-      {/* Buttons to navigate to other pages */}
-      <Button title="Go to Past" onPress={() => router.push('pages/past')} />
-      <Button title="Go to Present" onPress={() => router.push('pages/present')} />
-      <Button title="Go to Future" onPress={() => router.push('pages/future')} />
+      {/* Include the NavBar component */}
+      <NavBar />
     </View>
   );
 }
@@ -23,8 +19,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   text: {
     fontSize: 20,
+    marginBottom: 20,
   },
 });
