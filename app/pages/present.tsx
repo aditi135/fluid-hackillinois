@@ -6,6 +6,7 @@ import styles from '../styles';
 export default function Present() {
   return (
     <View style={styles.container}>
+      <Text style={styles.logo}>fluid</Text>
       <Text style={styles.text}>Present Tab</Text>
       <NavBar />
 
