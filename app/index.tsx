@@ -37,8 +37,20 @@ export default function Index() {
           speed={3}  // Slower animation speed
           maxPoints={5}  // Fewer wave points for subtle effect
           delta={40}  // Larger wave bounce for variation
-          color="#4A6F91"  // A different color for the second wave
+          color="#A1C6EA"  // A different color for the second wave
           gap={30}  // Wider gap between waves
+        />
+      </View>
+
+      {/* Third Wave container, behind the first two waves */}
+      <View style={styles.thirdWaveContainer}>
+        <Wave
+          placement="bottom"  // Position third wave at the bottom
+          speed={4}  // Faster animation speed
+          maxPoints={15}  // More wave points for a larger wave
+          delta={20}  // Larger wave bounce for more dynamic movement
+          color="#BBD1EA"  // A new color for the third wave
+          gap={25}  // Medium gap between waves
         />
       </View>
 
@@ -75,40 +87,45 @@ const titleMarginBottom = height * 0.05;  // 5% of the screen height for margin 
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#DAE3E5',  // Background color for the page
+    backgroundColor: '#DAE3E5',
     padding: 30,
     height: '100%',
     width: '100%'
   },
   waveContainer: {
-    position: 'absolute',  // Position the first wave container absolutely
-    bottom: 0,  // Position it at the bottom of the screen
-    width: '100%',
-    height: '50%',  // Half of the screen height
-    zIndex: 0,  // Put the first wave behind other elements
+    position: 'absolute',
+    bottom: 0,
+    width: width,
+    height: waveHeight,
+    zIndex: 2,  // First wave is behind
   },
   secondWaveContainer: {
-    position: 'absolute',  // Position the second wave container absolutely
-    bottom: 100,  // Position it at the bottom of the screen, behind the first wave
-    width: '100%',
-    height: waveHeight,  // Half of the screen height
-    zIndex: -1,  // Put the second wave behind the first wave
+    position: 'absolute',
+    bottom: 100,
+    width: width,
+    height: waveHeight,
+    zIndex: 1,  // Second wave is behind the first
+  },
+  thirdWaveContainer: {
+    position: 'absolute',
+    bottom: 150,  // Slightly higher than the second wave
+    width: width,
+    height: waveHeight,
+    zIndex: 0,  // Third wave is behind both previous waves
   },
   title: {
     fontSize: 36,
     fontWeight: 'bold',
-    color: '#507DBC',  // White text for the title
+    color: '#507DBC',
     padding: 5,
-    marginTop: 50,  // Use dynamic margin based on screen height
-    zIndex: 1,  // Ensure title is on top of wave
+    marginTop: 50,
+    zIndex: 5,
   },
   loginSection: {
     width: '100%',
-    maxWidth: 400,  // Limit the width of the login form
-    zIndex: 1,  // Ensure the form is on top of the wave
+    maxWidth: 400,
+    zIndex: 5,
   },
   input: {
     height: 40,
@@ -118,6 +135,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderRadius: 5,
     color: '#507DBC',
-    backgroundColor: 'white',  // White background for the input fields
+    backgroundColor: 'white',
   },
 });
