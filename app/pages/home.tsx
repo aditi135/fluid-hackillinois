@@ -8,7 +8,6 @@ export default function Home() {
     <View style={styles.container}>
       <Text style={styles.text}>Home Page</Text>
 
-      {/* Include the NavBar component */}
       <NavBar />
     </View>
   );
