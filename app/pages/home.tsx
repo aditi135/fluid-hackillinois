@@ -3,14 +3,6 @@ import { Text, View, StyleSheet, Animated, Easing } from 'react-native';
 import NavBar from '../../components/NavBar'; // Import the NavBar component
 import styles from '../styles';
 
-interface Fish {
-  x: Animated.Value;
-  y: Animated.Value;
-  startX: number;
-  startY: number;
-  endX: number;
-  endY: number;
-}
 
 export default function Home() {
   return (
