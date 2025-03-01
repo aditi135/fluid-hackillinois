@@ -59,15 +59,15 @@ export default function Past() {
         {/* Health bars container, now stacked horizontally */}
         <View style={styles_local.healthBars}>
             {/* Monthly Debt */}
-            <HealthBar label="Monthly Debt" totalDebt={totalMonthlyDebt} paidAmount={totalPaidAmount} /> {/* Example: $5000 total, $2000 paid */}
+            <HealthBar label="Monthly Debt" totalDebt={totalMonthlyDebt} paidAmount={totalPaidAmount} /> Example: $5000 total, $2000 paid
             
             {/* Total Debt */}
-            <HealthBar label="Total Debt" totalDebt={totalDebt} paidAmount={totalMonthlyPaidAmount} /> {/* Example: $10000 total, $4590 paid */}
+            <HealthBar label="Total Debt" totalDebt={totalDebt} paidAmount={totalMonthlyPaidAmount} /> Example: $10000 total, $4590 paid
         </View>
 
         {/* Main content */}
         <Text style={styles.text}>This Month's Bill</Text>
-
+        <View style={styles_local.healthBars}>
         {
             userData.map((item) => {
                 var name = "";
@@ -76,13 +76,13 @@ export default function Past() {
                 } else if (item.type == "home") {
                     name = "Home Loan";
                 }
+                {/*have paidAmount saved in mongodb*/}
                 return (
-                    <View>
-                        <HealthBar label={name} totalDebt={item.monthly_payment} paidAmount={0} /> {/*have paidAmount saved in mongodb*/}
-                    </View>
+                    <HealthBar label={name} totalDebt={item.monthly_payment} paidAmount={0} /> 
                 )
             })
-        };
+        }
+        </View>
         
         {/* Navigation bar */}
         <Text style={styles.logo}>fluid</Text>
