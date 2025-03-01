@@ -60,7 +60,7 @@ export default function Index() {
       </View>
 
       {/* Title */}
-      <Text style={styles.title}>Fluid</Text>
+      <Text style={styles.title}>fluid</Text>
 
       {/* Login Section */}
       <View style={styles.loginSection}>

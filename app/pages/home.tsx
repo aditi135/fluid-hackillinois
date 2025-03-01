@@ -7,6 +7,7 @@ import styles from '../styles';
 export default function Home() {
   return (
     <View style={styles.container}>
+      <Text style={styles.logo}>fluid</Text>
       <Text style={styles.text}>Home Page</Text>
 
       <NavBar />

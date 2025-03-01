@@ -6,9 +6,10 @@ import styles from '../styles';
 export default function Future() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Future Tab</Text>
-      <NavBar />
+      <Text style={styles.logo}>fluid</Text>
+      <Text style={styles.title}>Future</Text>
 
+      <NavBar />
     </View>
   );
 }

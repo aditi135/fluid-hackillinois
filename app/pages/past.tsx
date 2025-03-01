@@ -6,6 +6,7 @@ import styles from '../styles';
 export default function Past() {
   return (
     <View style={styles.container}>
+      <Text style={styles.logo}>fluid</Text>
       <Text style={styles.text}>Past</Text>
       
       <NavBar />
