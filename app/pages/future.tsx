@@ -5,8 +5,8 @@ import NavBar from '../../components/NavBar'; // Import the NavBar component
 import secrets from '../secrets';
 import styles from '../styles';
 
-export default function Future() {
-    const [userData, setUserData] = useState({"balance": 0});
+export default function Savings() {
+    const [userData, setUserData] = useState({"balance": "Loading..."});
     
     useEffect(() => {
         const fetchData = async () => {
@@ -28,7 +28,7 @@ export default function Future() {
         <View style={styles.container}>
         <Text style={styles.logo}>fluid</Text>
         <Text style={styles.title}>Future</Text>
-        <Text style={styles.text}>{userData.balance}</Text>
+        <Text style={styles.text}>Current Account Balance: {userData.balance}</Text>
         <NavBar />
         </View>
     );
