@@ -6,7 +6,8 @@ import NavBar from '../../components/NavBar'; // Import the NavBar component
 export default function Past() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Past Tab</Text>
+      <Text style={styles.text}>Past</Text>
+
       <NavBar />
     </View>
   );

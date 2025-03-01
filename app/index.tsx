@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     zIndex: 0,  // Third wave is behind both previous waves
   },
   title: {
-    fontSize: 36,
+    fontSize: 72,
     fontWeight: 'bold',
     color: '#507DBC',
     padding: 5,

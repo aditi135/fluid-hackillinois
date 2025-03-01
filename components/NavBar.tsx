@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',  // Arrange buttons in a row
     justifyContent: 'space-around',  // Space buttons evenly
     paddingVertical: 10,  // Space around buttons vertically
-    backgroundColor:'#1E3A8A',
+    backgroundColor:'#507DBC',
     zIndex: 1000,  // Make sure the nav bar stays on top
   },
   button: {
     flex: 1,  // Make each button take equal space
-    backgroundColor: '#1E3A8A',  // Darker blue for button background
+    backgroundColor: '#507DBC',  // Darker blue for button background
     marginHorizontal: 1,  // Small gap between buttons
     marginBottom: 0,
     paddingVertical: 15,  // Vertical padding for the button
