@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
+    fontFamily: 'Lexend',
     fontSize: 20,
   },
 });

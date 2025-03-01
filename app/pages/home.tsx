@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   text: {
+    fontFamily: 'Lexend',
     fontSize: 20,
     marginBottom: 20,
   },

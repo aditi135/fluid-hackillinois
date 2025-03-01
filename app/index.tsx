@@ -126,11 +126,13 @@ const styles = StyleSheet.create({
     padding: 5,
     marginTop: 50,
     zIndex: 5,
+    fontFamily: 'Zain',
   },
   loginSection: {
     width: '100%',
     maxWidth: 400,
     zIndex: 5,
+    fontFamily: 'Lexend',
   },
   input: {
     height: 40,
@@ -141,5 +143,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: '#507DBC',
     backgroundColor: 'white',
+    fontFamily: 'Lexend',
   },
 });

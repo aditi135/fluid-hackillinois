@@ -1,9 +1,9 @@
 // styles.js
-
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
+    fontFamily: 'Lexend',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -27,16 +27,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     fontWeight: 'bold',
+    fontFamily: 'Zain',
     color: 'white', // White text for the title
     marginBottom: 40,
     zIndex: 1,
   },
   loginSection: {
+    fontFamily: 'Lexend',
     width: '100%',
     maxWidth: 400,
     zIndex: 1,
   },
   input: {
+    fontFamily: 'Lexend',
     height: 40,
     borderColor: '#ccc',
     borderWidth: 1,
