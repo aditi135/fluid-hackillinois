@@ -1,10 +1,12 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import NavBar from '../../components/NavBar'; // Import the NavBar component
 
 export default function Past() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Past Tab</Text>
+      <NavBar />
     </View>
   );
 }

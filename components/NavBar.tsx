@@ -8,9 +8,9 @@ const NavBar = () => {
 
   return (
     <View style={styles.navContainer}>
-      <Button title="Go to Past" onPress={() => router.push('/past')} />
-      <Button title="Go to Present" onPress={() => router.push('/present')} />
-      <Button title="Go to Future" onPress={() => router.push('/future')} />
+      <Button title="Go to Past" onPress={() => router.push('pages/past')} />
+      <Button title="Go to Present" onPress={() => router.push('pages/present')} />
+      <Button title="Go to Future" onPress={() => router.push('pages/future')} />
     </View>
   );
 };
