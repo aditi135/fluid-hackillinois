@@ -16,6 +16,7 @@ export default function Index() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();  // This is how to get the router instance
+    const [failedLogin, setFailedLogin] = useState(false);
 
 
   // Function to create a test user
@@ -64,6 +65,8 @@ export default function Index() {
             secrets.account_id = data.user_info.account_id;
             secrets.user_info = data.user_info;
             router.push("pages/home");
+        } else {
+            setFailedLogin(true);
         }
     };
   
@@ -115,6 +118,8 @@ export default function Index() {
       <Text style={styles.title}>fluid</Text>
 
       {/* Login Section */}
+      {failedLogin && <View style={styles.loginError}
+      >Incorrect username and/or password</View>}
       <View style={styles.loginSection}>
         <TextInput
           style={styles.input}
@@ -143,58 +148,62 @@ const waveHeight = height * 0.5;  // Half the screen height for the wave contain
 const titleMarginBottom = height * 0.05;  // 5% of the screen height for margin below the title
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#DAE3E5',
-    padding: 30,
-    height: '100%',
-    width: '100%'
-  },
-  waveContainer: {
-    position: 'absolute',
-    bottom: 0,
-    width: width,
-    height: waveHeight,
-    zIndex: 2,  // First wave is behind
-  },
-  secondWaveContainer: {
-    position: 'absolute',
-    bottom: 100,
-    width: width,
-    height: waveHeight,
-    zIndex: 1,  // Second wave is behind the first
-  },
-  thirdWaveContainer: {
-    position: 'absolute',
-    bottom: 150,  // Slightly higher than the second wave
-    width: width,
-    height: waveHeight,
-    zIndex: 0,  // Third wave is behind both previous waves
-  },
-  title: {
-    fontSize: 72,
-    fontWeight: 'bold',
-    color: '#507DBC',
-    padding: 5,
-    marginTop: 50,
-    zIndex: 5,
-    fontFamily: 'Zain',
-  },
-  loginSection: {
-    width: '100%',
-    maxWidth: 400,
-    zIndex: 5,
-    fontFamily: 'Lexend',
-  },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    marginBottom: 15,
-    paddingLeft: 10,
-    borderRadius: 5,
-    color: '#507DBC',
-    backgroundColor: 'white',
-    fontFamily: 'Lexend',
-  },
+    loginError: {
+        color: "red",
+        fontFamily: "Arial",
+    },
+    container: {
+        alignItems: 'center',
+        backgroundColor: '#DAE3E5',
+        padding: 30,
+        height: '100%',
+        width: '100%'
+    },
+    waveContainer: {
+        position: 'absolute',
+        bottom: 0,
+        width: width,
+        height: waveHeight,
+        zIndex: 2,  // First wave is behind
+    },
+    secondWaveContainer: {
+        position: 'absolute',
+        bottom: 100,
+        width: width,
+        height: waveHeight,
+        zIndex: 1,  // Second wave is behind the first
+    },
+    thirdWaveContainer: {
+        position: 'absolute',
+        bottom: 150,  // Slightly higher than the second wave
+        width: width,
+        height: waveHeight,
+        zIndex: 0,  // Third wave is behind both previous waves
+    },
+    title: {
+        fontSize: 72,
+        fontWeight: 'bold',
+        color: '#507DBC',
+        padding: 5,
+        marginTop: 50,
+        zIndex: 5,
+        fontFamily: 'Zain',
+    },
+    loginSection: {
+        width: '100%',
+        maxWidth: 400,
+        zIndex: 5,
+        fontFamily: 'Lexend',
+    },
+    input: {
+        height: 40,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        marginBottom: 15,
+        paddingLeft: 10,
+        borderRadius: 5,
+        color: '#507DBC',
+        backgroundColor: 'white',
+        fontFamily: 'Lexend',
+    },
 });
