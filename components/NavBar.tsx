@@ -11,22 +11,22 @@ const NavBar = () => {
     
       {/* Custom Touchable button for "Go to Home" */}
       <TouchableOpacity style={styles.button} onPress={() => router.push('pages/home')}>
-        <Text style={styles.buttonText}>Go to Home</Text>
+        <Text style={styles.buttonText}>Home</Text>
       </TouchableOpacity>
 
       {/* Custom Touchable button for "Go to Past" */}
       <TouchableOpacity style={styles.button} onPress={() => router.push('pages/past')}>
-        <Text style={styles.buttonText}>Go to Past</Text>
+        <Text style={styles.buttonText}>Past</Text>
       </TouchableOpacity>
 
       {/* Custom Touchable button for "Go to Present" */}
       <TouchableOpacity style={styles.button} onPress={() => router.push('pages/present')}>
-        <Text style={styles.buttonText}>Go to Present</Text>
+        <Text style={styles.buttonText}>Present</Text>
       </TouchableOpacity>
 
       {/* Custom Touchable button for "Go to Future" */}
       <TouchableOpacity style={styles.button} onPress={() => router.push('pages/future')}>
-        <Text style={styles.buttonText}>Go to Future</Text>
+        <Text style={styles.buttonText}>Future</Text>
       </TouchableOpacity>
     </View>
   );
