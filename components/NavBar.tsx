@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     right: 0,
     flexDirection: 'row',  // Arrange buttons in a row
     justifyContent: 'space-around',  // Space buttons evenly
-    paddingVertical: 10,  // Space around buttons vertically
+    paddingVertical: 0,  // Space around buttons vertically
     backgroundColor:'#507DBC',
     zIndex: 1000,  // Make sure the nav bar stays on top
   },
