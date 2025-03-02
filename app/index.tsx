@@ -121,7 +121,7 @@ export default function Index() {
           onChangeText={setPassword}
           secureTextEntry
         />
-        <Button title="Login" onPress={handleLogin} />
+        <Button color="#507DBC" title="Login" onPress={handleLogin} />
       </View>
     </View>
   );
