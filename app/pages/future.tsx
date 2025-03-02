@@ -50,7 +50,6 @@ export default function Savings() {
                 if (response.ok) {
                     const data = await response.json();  // Await the json() method to resolve the promise
                     setGoals(data.user_info.goals);
-                    console.log(goals);
                 }
             } catch (error) {
                 console.error(error);
@@ -67,11 +66,20 @@ export default function Savings() {
         setModalVisible(!modalVisible);
     };
 
-    const saveGoal = () => {
-        // if valid, update database
-        console.log(cost);
+    const saveGoal = async () => {
+        //  update database
+        const response = await fetch(`http://localhost:8080/setgoal`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "account_id": secrets.account_id,
+                "goal": goal,
+                "amt": cost,
+            }),
+        });
         // close and reset modal
-        console.log(goals);
         toggleModal();
         setGoal("");
         setCost("");

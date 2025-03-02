@@ -107,28 +107,16 @@ app.post('/resetUsers', async (req, res) => {
   }
 });
 
-// // Routes to set and get goals
-// app.post('/getgoals', async (req, res) => {
-//     // const usern = req.body.username;
-//     // const password = req.body.password;
-
-//     try {
-//         const user = await User.findOne({ "account_id": account_id });
-        
-//         if (!user) {
-//             console.log("user not found");
-//             return res.status(500).json({ success: false, message: 'User not found' });
-//         }
-//         res.status(200).json({ success: true, message: 'Username and password correct', user_info: user });
-//     } catch (error) {
-//         console.error('Error in login:', error);
-//         res.status(500).json({ success: false, message: 'Internal server error' });
-//     }
-// });
-
-// app.post('/setgoals', async (req, res) => {
-    // 
-// }
+app.post('/setgoal', async (req, res) => {
+    const { account_id, goal, amt } = req.body;
+    try {
+        const result = await User.updateOne({ "account_id" : account_id },
+            { "$push": { "goals": {"goal": goal, "amt": amt, "paid": 0} } });
+        return res.status(200).json({ success: true, result: result });
+    } catch (error) {
+        return res.status(500).json({ success: false });
+    }
+});
 
 
 app.listen(port, () => {
