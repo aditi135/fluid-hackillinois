@@ -6,27 +6,27 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 const HealthBar = ({ label, totalDebt, paidAmount }) => {
-  // Calculate the percentage of paid/debt ratio
-  const percentage = totalDebt > 0 ? (paidAmount / totalDebt) * 100 : 0;
+    // Calculate the percentage of paid/debt ratio
+    const percentage = totalDebt > 0 ? (paidAmount / totalDebt) * 100 : 0;
 
-  return (
-    <View style={stylesLocal.healthBarContainer}>
-      <Text style={stylesLocal.debtText}>{label}</Text>
+    return (
+        <View style={stylesLocal.healthBarContainer}>
+        <Text style={stylesLocal.debtText}>{label}</Text>
 
-      {/* Horizontal Thermometer with a clean liquid fill */}
-      <View style={stylesLocal.thermometer}>
-        {/* Empty part of the thermometer tube */}
-        <View style={stylesLocal.emptyBar}>
-          {/* Filled part of the thermometer (liquid) */}
-          <View
-            style={[stylesLocal.filledBar, { width: `${percentage}%` }]} // Dynamically set the width based on the calculated percentage
-          />
+        {/* Horizontal Thermometer with a clean liquid fill */}
+        <View style={stylesLocal.thermometer}>
+            {/* Empty part of the thermometer tube */}
+            <View style={stylesLocal.emptyBar}>
+            {/* Filled part of the thermometer (liquid) */}
+            <View
+                style={[stylesLocal.filledBar, { width: `${percentage}%` }]} // Dynamically set the width based on the calculated percentage
+            />
+            </View>
         </View>
-      </View>
 
-      {/* Display the calculated percentage for reference */}
-      <Text style={stylesLocal.percentageText}>{percentage.toFixed(1)}%</Text>
-    </View>
+        {/* Display the calculated percentage for reference */}
+        <Text style={stylesLocal.percentageText}>{percentage.toFixed(1)}%</Text>
+        </View>
   );
 };
 
