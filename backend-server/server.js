@@ -61,6 +61,8 @@ app.post('/login', async (req, res) => {
 
         // If username exists and password is correct, send success response
         console.log("user authenticated successfully");
+        account_id = user.account_id;
+        customer_id = user.customer_id;
         res.status(200).json({ success: true, message: 'Username and password correct', user_info: user });
     } catch (error) {
         console.error('Error in login:', error);
@@ -104,6 +106,29 @@ app.post('/resetUsers', async (req, res) => {
     res.status(500).json({ error: 'Error resetting users' });
   }
 });
+
+// // Routes to set and get goals
+// app.post('/getgoals', async (req, res) => {
+//     // const usern = req.body.username;
+//     // const password = req.body.password;
+
+//     try {
+//         const user = await User.findOne({ "account_id": account_id });
+        
+//         if (!user) {
+//             console.log("user not found");
+//             return res.status(500).json({ success: false, message: 'User not found' });
+//         }
+//         res.status(200).json({ success: true, message: 'Username and password correct', user_info: user });
+//     } catch (error) {
+//         console.error('Error in login:', error);
+//         res.status(500).json({ success: false, message: 'Internal server error' });
+//     }
+// });
+
+// app.post('/setgoals', async (req, res) => {
+    // 
+// }
 
 
 app.listen(port, () => {

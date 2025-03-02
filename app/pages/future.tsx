@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Modal, TextInput } from 'react-native';
 import NavBar from '../../components/NavBar'; // Import the NavBar component
+import HealthBar from '../../components/HealthBar'; // Import the Thermometer-themed HealthBar component
 
 import secrets from '../secrets';
 import styles from '../styles';
 
+const { height, width } = Dimensions.get('window'); // Get screen dimensions
+
 export default function Savings() {
     const [userData, setUserData] = useState({"balance": "Loading..."});
+    const [goals, setGoals] = useState([]);
+    // var goals = [];
+
+    // set savings goals
+    const [modalVisible, setModalVisible] = useState(false);
+    const [goal, setGoal] = useState("");
+    const [cost, setCost] = useState("");
     
     useEffect(() => {
         const fetchData = async () => {
@@ -21,15 +31,146 @@ export default function Savings() {
                 console.log(error);
             }
         }
-        fetchData();
+        fetchData(); 
     }, []);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/login`, {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: secrets.user_info.username,
+                        password: secrets.user_info.password,
+                    }),
+                });
+                if (response.ok) {
+                    const data = await response.json();  // Await the json() method to resolve the promise
+                    setGoals(data.user_info.goals);
+                    console.log(goals);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData();     
+    }, []);
+
+    useEffect(() => {
+        console.log("Updated Goals: ", goals);  // Log goals after they've been updated
+    }, [goals]);
+
+    const toggleModal = () => {
+        setModalVisible(!modalVisible);
+    };
+
+    const saveGoal = () => {
+        // if valid, update database
+        console.log(cost);
+        // close and reset modal
+        console.log(goals);
+        toggleModal();
+        setGoal("");
+        setCost("");
+    };
+
     return (
-        <View style={styles.container}>
-        <Text style={styles.logo}>fluid</Text>
-        <Text style={styles.title}>Future</Text>
-        <Text style={styles.text}>Current Account Balance: {userData.balance}</Text>
-        <NavBar />
-        </View>
+        <ScrollView style={styles.stepContainer}>
+            <Text style={styles.titleContainer}>
+                Future
+            </Text>
+            <Text style={styles.textContainer}>
+                Current Account Balance: {userData.balance}
+            </Text>
+            <Text style={styles.textContainer}>
+                What do you want to save for a rainy day?
+            </Text>
+            <Text style={styles.textContainer}>
+                Use this page to set savings goals and organize your cash into savings buckets.
+                You get rewards for reaching your goals.
+            </Text>
+            <TouchableOpacity onPress={toggleModal} style={styles.button}>
+                <Text style={styles.buttonText}>Add a Savings Goal</Text>
+            </TouchableOpacity>
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={toggleModal}
+            >
+                <View style={styles.modalBackground}>
+                    <View style={styles.modalContainer}>
+                        <Text style={styles.textContainer}>What are you saving for?</Text>
+                        <TextInput
+                            style={styles.inputText}
+                            value={goal}
+                            onChangeText={setGoal}
+                        />
+
+                        <Text style={styles.textContainer}>How much will it cost (in dollars)?</Text>
+                        <TextInput
+                            style={styles.inputText}
+                            keyboardType="numeric"
+                            value={cost}
+                            onChangeText={setCost}
+                        />
+                        <TouchableOpacity onPress={saveGoal} style={styles.button}>
+                            <Text style={styles.buttonText}>Set Goal</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+            <View style={styles_local.healthBars}>
+                {
+                    goals.map((item) => {
+                        return (
+                            <View key={item.name} style={styles_local.container}>
+                                <HealthBar 
+                                label={item.name} 
+                                totalDebt={item.amt} 
+                                paidAmount={item.progress} 
+                                />
+                            </View>
+                        );
+                    })
+                }
+            </View>
+        </ScrollView>
     );
 }
+
+const styles_local = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'flex-start', // Align items to the top
+        alignItems: 'center',
+        position: 'relative',
+        paddingTop: 20,
+        paddingHorizontal: 20, // Ensure there is padding to prevent items from touching the edges
+    },
+    titleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 20, // Add space below the title
+    },
+    title: {
+        fontFamily: 'Lexend',
+        fontSize: 40,
+        fontWeight: 'bold',
+        color: '#333',
+    },
+    healthBars: {
+        flexDirection: 'row', // Place the health bars horizontally
+        justifyContent: 'space-between', // Space out the bars
+        alignItems: 'center', // Center the bars vertically within the container
+        width: width * 0.8, // Make sure the health bars fit in the screen
+    },
+    text: {
+        fontFamily: 'Lexend',
+        fontSize: 20,
+    },
+});
