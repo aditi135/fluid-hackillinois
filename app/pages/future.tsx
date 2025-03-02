@@ -99,11 +99,11 @@ export default function Savings() {
 
     const updateGoal = async () => {
         goals.forEach((item) => {
-            console.log(item.name);
-            console.log(selectedValue);
+            console.log(cost);
+            console.log(selectedValue)
+            console.log(item.progress);
             if (item.name == selectedValue) {
-                item.progress = cost;
-                console.log(13);
+                item.progress = item.progress + cost;
             }
         });
         toggleModal();
