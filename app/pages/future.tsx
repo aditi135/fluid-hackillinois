@@ -12,7 +12,6 @@ const { height, width } = Dimensions.get('window'); // Get screen dimensions
 export default function Savings() {
     const [userData, setUserData] = useState({"balance": "Loading..."});
     const [goals, setGoals] = useState([]);
-    // var goals = [];
 
     // set savings goals
     const [modalVisible, setModalVisible] = useState(false);
@@ -93,13 +92,20 @@ export default function Savings() {
             "progress": 0,
         });
         // close and reset modal
-        toggleModal();
+        toggle2Modal();
         setGoal("");
         setCost("");
     };
 
     const updateGoal = async () => {
-        //
+        goals.forEach((item) => {
+            console.log(item.name);
+            console.log(selectedValue);
+            if (item.name == selectedValue) {
+                item.progress = cost;
+                console.log(13);
+            }
+        });
         toggleModal();
     }
 
@@ -121,7 +127,7 @@ export default function Savings() {
                     You get rewards for reaching your goals.
                 </Text>
 
-                <TouchableOpacity onPress={toggleModal} style={styles.button}>
+                <TouchableOpacity onPress={toggle2Modal} style={styles.button}>
                     <Text style={styles.buttonText}>Add a Savings Goal</Text>
                 </TouchableOpacity>
 
@@ -169,7 +175,7 @@ export default function Savings() {
                             <Text style={styles.textContainer}>What are you saving for?</Text>
                             <Picker
                                 selectedValue={selectedValue}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                                onValueChange={setSelectedValue}
                                 style={styles_local.picker}
                             >
                                 {

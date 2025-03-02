@@ -1,6 +1,6 @@
 // Debts.js
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import NavBar from '../../components/NavBar'; // Import the NavBar component
 import HealthBar from '../../components/HealthBar'; // Import the Thermometer-themed HealthBar component
 
@@ -51,8 +51,13 @@ export default function Past() {
 
     return (
         <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <View style={[styles_local.titleContainer, { width: availableSpace }]}>
                 <Text style={styles.title}>Debts</Text>
+            </View>
+            <View>
+                <Text style={styles.text}>With the Capital One API, we can keep track of your loans and your progress toward monthly payments. When you make a transaction on your card to pay the loan, we update your  trackers.</Text>
+                <Text style={styles.text}>Each time you complete your monthly goal or complete 10% of your overall goal, you'll get a mystery surprise for your tank!</Text>
             </View>
             {/* Health bars container, now stacked horizontally */}
             <View style={styles_local.healthBars}>
@@ -62,9 +67,9 @@ export default function Past() {
                 <HealthBar label="Total Debt" totalDebt={totalDebt} paidAmount={totalMonthlyPaidAmount} />
             </View>
             <br/>
-                <div style={styles_local.container}>
-                <Ice percent={(totalMonthlyDebt-totalMonthlyPaidAmount)/totalMonthlyDebt}></Ice>
-                </div>
+                {/* <div style={styles_local.container}> */}
+                {/* <Ice percent={(totalMonthlyDebt-totalMonthlyPaidAmount)/totalMonthlyDebt}></Ice> */}
+                {/* </div> */}
             {/* Navigation bar */}
             <Text style={styles.text}>This Month's Bill</Text>
             <View style={styles_local.healthBars}>
@@ -86,6 +91,7 @@ export default function Past() {
                 }
             </View>
             <Text style={styles.logo}>fluid</Text>
+            </ScrollView>
             <NavBar />
         </View>
     );
