@@ -18,9 +18,10 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <View style={stylesLocal.banner}>
+      <div>
         <Text style={styles.logo}>fluid</Text>
-      </View>
+        <br></br>
+      </div>
       <Text style={styles.title}>Home</Text>
       <NavBar />
       <Text style={stylesLocal.header}>Your Fish</Text>
@@ -47,9 +48,6 @@ const stylesLocal = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-  },
-  banner: {
-    marginBottom: 20,
   },
   logo: {
     fontSize: 30,
