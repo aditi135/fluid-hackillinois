@@ -18,14 +18,14 @@ Fluid solves two main issues; it provides a custom interface for setting and tra
 
 - **Backend:** Node.js. We built a backend server with Node.js and connected it to our frontend and database.
 
-- **Database:** We used MongoDB, a NoSQL database service, to host our dummy data accounts. We also used the Capital One Hackathon API, Nessie, to simulate accessing a customer's financial data and expenses.
+- **Database:** We used MongoDB, a NoSQL database service, to host our dummy user accounts. We also used the Capital One Hackathon API, Nessie, to simulate accessing a customer's financial data and expenses.
 
 - **Deployment:** We deployed our app with Expo, an easy-to-use, versatile ecosystem of tools to deploy web apps; it is highly compatible with React Native.
 
 ## Challenges we ran into
-- **Connecting backend and frontend:** We had many moving 
-- **React Native:** versatility
-- **UI/UX:** drawing
+- **Connecting backend and frontend:** Integrating MongoDB with our frontend was tough due to our unique tech stack. Most of our application was written in TypeScript, and MongoDB doesn't have a driver for this language. We had to search through documentation and come up with innovative ways to connect our database to our application.
+- **React Native:** Being new to React Native, there was a learning curve of figuring out the framework. In addition to this, we worked on the mobile and web version of the app in parallel, which was a challenge when features would work on one but not the other. We really wanted to create an app that could be deployed on mobile or as a website. It took a lot of debugging to ensure consistency and functionality.
+- **UI/UX:** Creating a cohesive design was tricky since we needed many custom assets, which we had to hand-draw. Though time-consuming, this approach gave the app a unique look and feel, making it visually engaging.
 
 ## Accomplishments that we're proud of
 - Functional application that can be accessed through both a web browser and a mobile application
@@ -42,6 +42,7 @@ One thing we want to add to Fluid is a social component. We were heavily inspire
 
 We wanted to integrate a method for you to share your personal aquarium with friends, and for you to join a leaderboard that shows your progress toward your goals. This adds a fun twist to the game and encourages social support while reaching your individual financial goals.
 
+In addition, we would like to expand the application to allow for groups to tackle goals together. For example, a family might want to save up for a vacation together, and see it reflected in each of their user accounts. This meets the needs of people whose finances are tied closely with one or more other people. 
 ## Expo Quickstart
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
