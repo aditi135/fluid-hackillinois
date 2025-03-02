@@ -60,7 +60,7 @@ export default function Index() {
   
     try {
       // Send request to backend to check if username exists and validate password
-      console.log(`http://${IP}:8080/login`);
+      console.log(`http://localhost:8080/login`);
         const response = await fetch(`http://localhost:8080/login`, {
             method: 'POST',
             headers: {
