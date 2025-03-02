@@ -35,7 +35,7 @@ const NavBar = () => {
       <TouchableOpacity style={styles.button} onMouseEnter={(event: { target: any; }) => onMouseOver(event)} onMouseOut={(event: any) => onMouseOut(event)} onPress={() => router.push('pages/future')}>
         My Future
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onMouseEnter={(event: { target: any; }) => onMouseOver(event)} onMouseOut={(event: any) => onMouseOut(event)} onPress={() => router.push('pages/future')}>
+      <TouchableOpacity style={styles.button} onMouseEnter={(event: { target: any; }) => onMouseOver(event)} onMouseOut={(event: any) => onMouseOut(event)} onPress={() => router.push('/')}>
         Log Out
       </TouchableOpacity>
     </View>
