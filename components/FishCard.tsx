@@ -29,8 +29,12 @@ const FishCard = ({ name, info, type }) => {
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
-    marginBottom: 30,
+    margin: 15,
     padding: 20,
+    minWidth: '20%',
+    minHeight: '20%',
+    maxWidth: 250,
+    maxHeight: 250,
     backgroundColor: '#f1f1f1',
     borderRadius: 10,
     shadowColor: '#000',
@@ -45,9 +49,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   fishImage: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+    maxWidth: 60,
+    maxHeight: 40,
   },
   fishInfo: {
     fontSize: 16,
