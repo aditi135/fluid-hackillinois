@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Modal, TextInput } from 'react-native';
 import NavBar from '../../components/NavBar'; // Import the NavBar component
 import HealthBar from '../../components/HealthBar'; // Import the Thermometer-themed HealthBar component
+import { Picker } from '@react-native-picker/picker';
 
 import secrets from '../secrets';
 import styles from '../styles';
@@ -15,8 +16,11 @@ export default function Savings() {
 
     // set savings goals
     const [modalVisible, setModalVisible] = useState(false);
+    const [modal2Visible, setModal2Visible] = useState(false);
     const [goal, setGoal] = useState("");
     const [cost, setCost] = useState("");
+
+    const [selectedValue, setSelectedValue] = useState("");
     
     useEffect(() => {
         const fetchData = async () => {
@@ -65,25 +69,39 @@ export default function Savings() {
     const toggleModal = () => {
         setModalVisible(!modalVisible);
     };
+    const toggle2Modal = () => {
+        setModal2Visible(!modal2Visible);
+    };
 
     const saveGoal = async () => {
         //  update database
-        const response = await fetch(`http://localhost:8080/setgoal`, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "account_id": secrets.account_id,
-                "goal": goal,
-                "amt": cost,
-            }),
+        // const response = await fetch(`http://localhost:8080/setgoal`, {
+        //     method: 'POST',
+        //     headers: {
+        //     'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         "account_id": secrets.account_id,
+        //         "goal": goal,
+        //         "amt": cost,
+        //     }),
+        // });
+        // cheap and dirty solution: 
+        goals.push({
+            "name": goal,
+            "amt": cost,
+            "progress": 0,
         });
         // close and reset modal
         toggleModal();
         setGoal("");
         setCost("");
     };
+
+    const updateGoal = async () => {
+        //
+        toggleModal();
+    }
 
     return (
         <View style={styles.container}>
@@ -102,6 +120,7 @@ export default function Savings() {
                     Use this page to set savings goals and organize your cash into savings buckets.
                     You get rewards for reaching your goals.
                 </Text>
+
                 <TouchableOpacity onPress={toggleModal} style={styles.button}>
                     <Text style={styles.buttonText}>Add a Savings Goal</Text>
                 </TouchableOpacity>
@@ -109,8 +128,8 @@ export default function Savings() {
                 <Modal
                     animationType="slide"
                     transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={toggleModal}
+                    visible={modal2Visible}
+                    onRequestClose={toggle2Modal}
                 >
                     <View style={styles.modalBackground}>
                         <View style={styles.modalContainer}>
@@ -134,6 +153,48 @@ export default function Savings() {
                         </View>
                     </View>
                 </Modal>
+
+                <TouchableOpacity onPress={toggleModal} style={styles.button}>
+                    <Text style={styles.buttonText}>Put Money in a Savings Goal</Text>
+                </TouchableOpacity>
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={toggleModal}
+                >
+                    <View style={styles.modalBackground}>
+                        <View style={styles.modalContainer}>
+                            <Text style={styles.textContainer}>What are you saving for?</Text>
+                            <Picker
+                                selectedValue={selectedValue}
+                                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                                style={styles_local.picker}
+                            >
+                                {
+                                    goals.map((item) => {
+                                        return (
+                                            <Picker.Item label={item.name} value={item.name} style={styles_local.picker_item} />
+                                        );
+                                    })
+                                }
+                            </Picker>
+
+                            <Text style={styles.textContainer}>How much are you putting into this goal (in dollars)?</Text>
+                            <TextInput
+                                style={styles.inputText}
+                                keyboardType="numeric"
+                                value={cost}
+                                onChangeText={setCost}
+                            />
+                            <TouchableOpacity onPress={updateGoal} style={styles.button}>
+                                <Text style={styles.buttonText}>Update Progress</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
+
                 <View style={styles_local.healthBars}>
                     {
                         goals.map((item) => {
@@ -185,4 +246,16 @@ const styles_local = StyleSheet.create({
         fontFamily: 'Lexend',
         fontSize: 20,
     },
+    picker: {
+        height: 50,
+        width: 200,
+        backgroundColor: '#f8f8f8',
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 8,
+    },
+    pickerItem: {
+        fontSize: 22,  // Increase the font size here
+        color: 'black',  // Optional: change the text color
+      },
 });
