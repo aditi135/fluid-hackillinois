@@ -86,68 +86,72 @@ export default function Savings() {
     };
 
     return (
-        <ScrollView style={styles.stepContainer}>
-            <Text style={styles.titleContainer}>
-                Future
-            </Text>
-            <Text style={styles.textContainer}>
-                Current Account Balance: {userData.balance}
-            </Text>
-            <Text style={styles.textContainer}>
-                What do you want to save for a rainy day?
-            </Text>
-            <Text style={styles.textContainer}>
-                Use this page to set savings goals and organize your cash into savings buckets.
-                You get rewards for reaching your goals.
-            </Text>
-            <TouchableOpacity onPress={toggleModal} style={styles.button}>
-                <Text style={styles.buttonText}>Add a Savings Goal</Text>
-            </TouchableOpacity>
+        <View style={styles.container}>
+            
+            <ScrollView style={styles.stepContainer}>
+                <Text style={styles.titleContainer}>
+                    Future
+                </Text>
+                <Text style={styles.textContainer}>
+                    Current Account Balance: {userData.balance}
+                </Text>
+                <Text style={styles.textContainer}>
+                    What do you want to save for a rainy day?
+                </Text>
+                <Text style={styles.textContainer}>
+                    Use this page to set savings goals and organize your cash into savings buckets.
+                    You get rewards for reaching your goals.
+                </Text>
+                <TouchableOpacity onPress={toggleModal} style={styles.button}>
+                    <Text style={styles.buttonText}>Add a Savings Goal</Text>
+                </TouchableOpacity>
 
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={toggleModal}
-            >
-                <View style={styles.modalBackground}>
-                    <View style={styles.modalContainer}>
-                        <Text style={styles.textContainer}>What are you saving for?</Text>
-                        <TextInput
-                            style={styles.inputText}
-                            value={goal}
-                            onChangeText={setGoal}
-                        />
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={toggleModal}
+                >
+                    <View style={styles.modalBackground}>
+                        <View style={styles.modalContainer}>
+                            <Text style={styles.textContainer}>What are you saving for?</Text>
+                            <TextInput
+                                style={styles.inputText}
+                                value={goal}
+                                onChangeText={setGoal}
+                            />
 
-                        <Text style={styles.textContainer}>How much will it cost (in dollars)?</Text>
-                        <TextInput
-                            style={styles.inputText}
-                            keyboardType="numeric"
-                            value={cost}
-                            onChangeText={setCost}
-                        />
-                        <TouchableOpacity onPress={saveGoal} style={styles.button}>
-                            <Text style={styles.buttonText}>Set Goal</Text>
-                        </TouchableOpacity>
+                            <Text style={styles.textContainer}>How much will it cost (in dollars)?</Text>
+                            <TextInput
+                                style={styles.inputText}
+                                keyboardType="numeric"
+                                value={cost}
+                                onChangeText={setCost}
+                            />
+                            <TouchableOpacity onPress={saveGoal} style={styles.button}>
+                                <Text style={styles.buttonText}>Set Goal</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
+                </Modal>
+                <View style={styles_local.healthBars}>
+                    {
+                        goals.map((item) => {
+                            return (
+                                <View key={item.name} style={styles_local.container}>
+                                    <HealthBar 
+                                    label={item.name} 
+                                    totalDebt={item.amt} 
+                                    paidAmount={item.progress} 
+                                    />
+                                </View>
+                            );
+                        })
+                    }
                 </View>
-            </Modal>
-            <View style={styles_local.healthBars}>
-                {
-                    goals.map((item) => {
-                        return (
-                            <View key={item.name} style={styles_local.container}>
-                                <HealthBar 
-                                label={item.name} 
-                                totalDebt={item.amt} 
-                                paidAmount={item.progress} 
-                                />
-                            </View>
-                        );
-                    })
-                }
-            </View>
-        </ScrollView>
+            </ScrollView>
+            <NavBar />
+        </View>
     );
 }
 
