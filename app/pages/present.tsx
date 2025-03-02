@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar'; // Import the NavBar component
 
 import secrets from '../secrets';
 import styles from '../styles';
+import HealthBar from '@/components/HealthBar';
 
 export default function Present() {
 
@@ -35,8 +36,10 @@ export default function Present() {
                 userData.length === 0 ? (
                     <Text style={styles.text}>No credit score data for this customer.</Text>
                 ) : (
-                    // You can add the code for the else condition here
-                    <Text style={styles.text}>{userData[0].credit_score}</Text>
+                    <><><View>
+                          </View><Text style={[{alignContent: 'center'}, styles.text]}>{userData[0].credit_score}</Text></>
+                          <br/><HealthBar label="Health" totalDebt={850} paidAmount={userData[0].credit_score} /></>
+
                   )
             }
         </Text>

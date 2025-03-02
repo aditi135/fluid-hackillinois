@@ -62,7 +62,7 @@ const stylesLocal = StyleSheet.create({
     fontWeight: '500',
   },
   innerContainer: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginBottom: 20,
   },
   columnWrapper: {

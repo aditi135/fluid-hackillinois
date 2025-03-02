@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 
+const { width } = Dimensions.get('window');
 // FishCard component accepts name, info, and type as props
 const FishCard = ({ name, info, type }) => {
   // Dynamically choose the image based on the type of fish
@@ -29,12 +30,15 @@ const FishCard = ({ name, info, type }) => {
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
-    marginBottom: 30,
+    margin: 15,
     padding: 20,
+    minWidth: width/5,
+    minHeight: '20%',
+    maxWidth: 250,
+    maxHeight: 250,
     backgroundColor: '#f1f1f1',
     borderRadius: 10,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 3,
@@ -45,9 +49,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   fishImage: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+    maxWidth: 60,
+    maxHeight: 40,
   },
   fishInfo: {
     fontSize: 16,

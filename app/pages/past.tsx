@@ -6,6 +6,7 @@ import HealthBar from '../../components/HealthBar'; // Import the Thermometer-th
 
 import secrets from '../secrets';
 import styles from '../styles';
+import Ice from '@/components/Ice';
 
 const { height, width } = Dimensions.get('window'); // Get screen dimensions
 
@@ -46,8 +47,7 @@ export default function Past() {
     let totalDebt = 5000;
     let totalPaidAmount = 4590;
     let totalMonthlyDebt = 5000;
-    let totalMonthlyPaidAmount = 2000;
-
+    let totalMonthlyPaidAmount = 4500;
 
     return (
         <View style={styles.container}>
@@ -58,10 +58,13 @@ export default function Past() {
             <View style={styles_local.healthBars}>
                 {/* Monthly Debt */}
                 <HealthBar label="Monthly Debt" totalDebt={totalMonthlyDebt} paidAmount={totalPaidAmount} />
-                
                 {/* Total Debt */}
                 <HealthBar label="Total Debt" totalDebt={totalDebt} paidAmount={totalMonthlyPaidAmount} />
             </View>
+            <br/>
+                <div style={styles_local.container}>
+                <Ice percent={(totalMonthlyDebt-totalMonthlyPaidAmount)/totalMonthlyDebt}></Ice>
+                </div>
             {/* Navigation bar */}
             <Text style={styles.text}>This Month's Bill</Text>
             <View style={styles_local.healthBars}>
@@ -94,11 +97,12 @@ const styles_local = StyleSheet.create({
     justifyContent: 'flex-start', // Align items to the top
     alignItems: 'center',
     position: 'relative',
-    paddingTop: 20,
+    //paddingTop: 20,
     paddingHorizontal: 20, // Ensure there is padding to prevent items from touching the edges
+    flexWrap: 'wrap',
   },
   titleContainer: {
-    justifyContent: 'center',
+    //justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20, // Add space below the title
   },
@@ -110,7 +114,7 @@ const styles_local = StyleSheet.create({
   },
   healthBars: {
     flexDirection: 'row', // Place the health bars horizontally
-    justifyContent: 'space-between', // Space out the bars
+    justifyContent: 'space-evenly', // Space out the bars
     alignItems: 'center', // Center the bars vertically within the container
     width: width * 0.8, // Make sure the health bars fit in the screen
   },
