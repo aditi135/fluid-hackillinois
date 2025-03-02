@@ -9,7 +9,7 @@ export default function Home() {
     { id: '1', name: 'Baby Fish', info: "This is a baby fish. It's small and cute.", type: 'baby-fish' },
     { id: '2', name: 'Clownfish', info: 'Clownfish are bright and have orange and white stripes.', type: 'clownfish' },
     { id: '3', name: 'Pufferfish', info: 'Pufferfish can inflate themselves when threatened.', type: 'pufferfish' },
-    { id: '4', name: 'Angelfish', info: 'Angelfish are beautiful and come in many colors.', type: 'baby-fish' },
+    // { id: '4', name: 'Angelfish', info: 'Angelfish are beautiful and come in many colors.', type: 'baby-fish' },
     // Add more fish data as needed
   ];
 
