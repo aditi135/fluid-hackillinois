@@ -51,46 +51,36 @@ export default function Past() {
 
     return (
         <View style={styles.container}>
-        {/* Title container to center the title dynamically */}
-        <View style={[styles_local.titleContainer, { width: availableSpace }]}>
-            <Text style={styles.title}>Debts</Text>
-        </View>
-
-        {/* Health bars container, now stacked horizontally */}
-        <View style={styles_local.healthBars}>
-            {/* Monthly Debt */}
-            <HealthBar label="Monthly Debt" totalDebt={totalMonthlyDebt} paidAmount={totalPaidAmount} /> Example: $5000 total, $2000 paid
-            
-            {/* Total Debt */}
-            <HealthBar label="Total Debt" totalDebt={totalDebt} paidAmount={totalMonthlyPaidAmount} /> Example: $10000 total, $4590 paid
-        </View>
-
-        {/* Main content */}
-        <Text style={styles.text}>This Month's Bill</Text>
-        <View style={styles_local.healthBars}>
-        {
-            userData.map((item) => {
-                var name = "";
-                if (item.type == "auto") {
-                    name = "Auto Loan";
-                } else if (item.type == "home") {
-                    name = "Home Loan";
+            <View style={[styles_local.titleContainer, { width: availableSpace }]}>
+                <Text style={styles.title}>Debts</Text>
+            </View>
+            {/* Health bars container, now stacked horizontally */}
+            <View style={styles_local.healthBars}>
+                {/* Monthly Debt */}
+                <HealthBar label="Monthly Debt" totalDebt={totalMonthlyDebt} paidAmount={totalPaidAmount} />
+                
+                {/* Total Debt */}
+                <HealthBar label="Total Debt" totalDebt={totalDebt} paidAmount={totalMonthlyPaidAmount} />
+            </View>
+            {/* Navigation bar */}
+            <Text style={styles.text}>This Month's Bill</Text>
+            <View style={styles_local.healthBars}>
+                {
+                    // map remaining debts from userData
                 }
-                {/*have paidAmount saved in mongodb*/}
-                return (
-                    <HealthBar label={name} totalDebt={item.monthly_payment} paidAmount={0} /> 
-                )
-            })
-        }
-        </View>
-        
-        {/* Navigation bar */}
-        <Text style={styles.logo}>fluid</Text>
-        
-        <NavBar />
+                {
+                    userData.map((item, index) => (
+                        <View key={index} style={styles_local.container}>
+                            <HealthBar label="Total Debt" totalDebt={item.monthly_payment} paidAmount={10} />
+                        </View>
+                    ))
+                }
+            </View>
+            <Text style={styles.logo}>fluid</Text>
+            <NavBar />
         </View>
     );
-}
+};
 
 const styles_local = StyleSheet.create({
   container: {
