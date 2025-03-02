@@ -62,6 +62,7 @@ export default function Index() {
             const data = await response.json();  // Await the json() method to resolve the promise
             secrets.customer_id = data.user_info.customer_id;
             secrets.account_id = data.user_info.account_id;
+            secrets.user_info = data.user_info;
             router.push("pages/home");
         }
     };
