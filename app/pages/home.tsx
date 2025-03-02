@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, FlatList, Dimensions } from 'react-native';
 import NavBar from '../../components/NavBar'; // Import the NavBar component
 import FishCard from '../../components/FishCard'; // Import the FishCard component
+import styles from '../styles';
 
 export default function Home() {
   const [numColumns, setNumColumns] = useState(getNumberOfColumns());
@@ -40,7 +41,7 @@ export default function Home() {
       <Text style={styles.title}>Home</Text>
       <NavBar />
 
-      <Text style={styles.header}>Your Fish</Text>
+      <Text style={styles.title}>Your Fish</Text>
 
       <FlatList
         data={fishData}
@@ -61,7 +62,7 @@ export default function Home() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles_local = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
