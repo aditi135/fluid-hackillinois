@@ -1,6 +1,6 @@
 # fluid
 
-(Try it out)[https://fluid-08e12e--bny20e58fy.expo.app/]
+[Try Fluid here!](https://fluid-08e12e--bny20e58fy.expo.app/)
 
 Fluid is a project for HackIllinois 2025.
 
