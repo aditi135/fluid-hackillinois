@@ -70,8 +70,6 @@ export default function Index() {
                 username: username,
                 password: password,
             }),
-        }).then((response) => {
-            // setUserInfo(response.body);
         });
     
         if(response.ok) {
