@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router'; // Importing useRouter for navigation
 import axios from 'axios'; // Import axios for making HTTP requests
 
 
+
 export default function Index() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,25 +16,25 @@ export default function Index() {
   const createTestUsers = async () => {
     // user 1 - admin
     try {
-      const response = await axios.post('http://localhost:5000/createUser', {
-        username: 'admin',
-        password: 'password'
-      });
-      console.log('Test user created:', response.data);
+        const response = await axios.post('http://localhost:8000/createUser', {
+            username: 'admin',
+            password: 'password'
+        });
+        console.log('Test user created:', response.data);
     } catch (error) {
-      console.error('Error creating user:', error);
+        console.error('Error creating user:', error);
     }
     // user 2 - herc
     try {
-      const response = await axios.post('http://localhost:5000/createUser', {
+      const response = await axios.post('http://localhost:8000/createUser', {
         username: 'herc733',
         password: 'iluvmeg!'
       });
       console.log('Test user created:', response.data);
     } catch (error) {
-      console.error('Error creating user:', error);
+        console.error('Error creating user:', error);
     }
-  };
+};
 
   const handleLogin = async () => {
     if (username === '' || password === '') {
@@ -43,12 +44,23 @@ export default function Index() {
   
     try {
       // Send request to backend to check if username exists and validate password
-      const response = await axios.post('http://localhost:5000/login', {
-        username,
-        password,
-      });
+    //   const response = await axios.post('http://localhost:8080/login', {
+    //     "username": username,
+    //     "password": password,
+    //   });
+    const response = await fetch('http://localhost:8080/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+    });
+    console.log(response);
   
-      if (response.data.success) {
+    if(response.ok) {
         // If login is successful, navigate to home page
         Alert.alert('Login Successful', `Welcome, ${username}!`);
         router.push('pages/home');  // Redirect to home screen
@@ -61,7 +73,7 @@ export default function Index() {
   
   // For testing: create the test user on component mount
   React.useEffect(() => {
-    createTestUsers();
+    // createTestUsers();
   }, []);
 
 
