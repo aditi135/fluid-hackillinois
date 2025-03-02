@@ -61,7 +61,7 @@ app.post('/login', async (req, res) => {
 
         // If username exists and password is correct, send success response
         console.log("user authenticated successfully");
-        res.status(200).json({ success: true, message: 'Username and password correct' }); // also post the account_id, customer_id
+        res.status(200).json({ success: true, message: 'Username and password correct', user_info: user });
     } catch (error) {
         console.error('Error in login:', error);
         res.status(500).json({ success: false, message: 'Internal server error' });

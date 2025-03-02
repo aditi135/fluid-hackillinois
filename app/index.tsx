@@ -4,19 +4,35 @@ import Wave from 'react-native-waves'; // Import the Wave component
 import { useRouter } from 'expo-router'; // Importing useRouter for navigation
 import axios from 'axios'; // Import axios for making HTTP requests
 
+import publicIP from 'react-native-public-ip';
+
+
+// const dns = require('node:dns');
+// const os = require('os');
+
+const options = { family: 4 };
 
 
 export default function Index() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const router = useRouter();  // This is how to get the router instance
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [userInfo, setUserInfo] = useState('');
+    const router = useRouter();  // This is how to get the router instance
+    publicIP()
+    .then(ip => {    
+        setIP(ip);
+    })
+    .catch(error => {
+        console.log(error);
+        // 'Unable to get IP address.'
+    });
 
 
   // Function to create a test user
   const createTestUsers = async () => {
     // user 1 - admin
     try {
-        const response = await axios.post('http://localhost:8000/createUser', {
+        const response = await axios.post(`http://localhost:8080/createUser`, {
             username: 'admin',
             password: 'password'
         });
@@ -26,7 +42,7 @@ export default function Index() {
     }
     // user 2 - herc
     try {
-      const response = await axios.post('http://localhost:8000/createUser', {
+      const response = await axios.post(`http://localhost:8080/createUser`, {
         username: 'herc733',
         password: 'iluvmeg!'
       });
@@ -44,31 +60,30 @@ export default function Index() {
   
     try {
       // Send request to backend to check if username exists and validate password
-    //   const response = await axios.post('http://localhost:8080/login', {
-    //     "username": username,
-    //     "password": password,
-    //   });
-    const response = await fetch('http://localhost:8080/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-    });
-    console.log(response);
-  
-    if(response.ok) {
-        // If login is successful, navigate to home page
-        Alert.alert('Login Successful', `Welcome, ${username}!`);
-        router.push('pages/home');  // Redirect to home screen
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      Alert.alert('Error', 'Incorrect username or password.');
-    }
+      console.log(`http://${IP}:8080/login`);
+        const response = await fetch(`http://localhost:8080/login`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            }),
+        }).then((response) => {
+            // setUserInfo(response.body);
+        });
+    
+        if(response.ok) {
+            // If login is successful, navigate to home page
+            Alert.alert('Login Successful', `Welcome, ${username}!`);
+            router.push('pages/home');  // Redirect to home screen
+            console.log(response);
+        }
+        } catch (error) {
+            console.error('Login error:', error);
+            Alert.alert('Error', 'Incorrect username or password.');
+        }
   };
   
   // For testing: create the test user on component mount
