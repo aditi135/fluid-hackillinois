@@ -66,11 +66,20 @@ export default function Past() {
             <Text style={styles.text}>This Month's Bill</Text>
             <View style={styles_local.healthBars}>
                 {
-                    userData.map((item, index) => (
-                        <View key={index} style={styles_local.container}>
-                            <HealthBar label="Total Debt" totalDebt={item.monthly_payment} paidAmount={10} />
-                        </View>
-                    ))
+                    userData.map((item) => {
+                        // Define the label based on the item.type
+                        const label = item.type === "auto" ? "Auto Loan" : item.type === "home" ? "Home Loan" : item.type;
+                
+                        return (
+                          <View key={item.type} style={styles_local.container}>
+                            <HealthBar 
+                              label={label} 
+                              totalDebt={item.monthly_payment} 
+                              paidAmount={10} 
+                            />
+                          </View>
+                        );
+                      })
                 }
             </View>
             <Text style={styles.logo}>fluid</Text>
