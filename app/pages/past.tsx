@@ -34,10 +34,11 @@ export default function Debts() {
       </View>
 
       {/* Main content */}
-      <Text style={styles.text}>Past Tab</Text>
       
       {/* Navigation bar */}
+      <div style={styles.banner}>
       <Text style={styles.logo}>fluid</Text>
+      </div>
       <Text style={styles.text}>Past</Text>
       
       <NavBar />
