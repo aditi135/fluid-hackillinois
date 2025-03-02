@@ -61,6 +61,8 @@ app.post('/login', async (req, res) => {
 
         // If username exists and password is correct, send success response
         console.log("user authenticated successfully");
+        account_id = user.account_id;
+        customer_id = user.customer_id;
         res.status(200).json({ success: true, message: 'Username and password correct', user_info: user });
     } catch (error) {
         console.error('Error in login:', error);
@@ -103,6 +105,18 @@ app.post('/resetUsers', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Error resetting users' });
   }
+});
+
+app.post('/setgoal', async (req, res) => {
+    const { account_id, goal, amt } = req.body;
+    try {
+        const result = await User.updateOne({ "account_id" : account_id },
+            { $push: { "goals": [{"goal": goal, "amt": amt, "paid": 0}] },
+        });
+        return res.status(200).json({ success: true, result: result });
+    } catch (error) {
+        return res.status(500).json({ success: false });
+    }
 });
 
 
