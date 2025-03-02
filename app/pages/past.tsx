@@ -66,9 +66,6 @@ export default function Past() {
             <Text style={styles.text}>This Month's Bill</Text>
             <View style={styles_local.healthBars}>
                 {
-                    // map remaining debts from userData
-                }
-                {
                     userData.map((item, index) => (
                         <View key={index} style={styles_local.container}>
                             <HealthBar label="Total Debt" totalDebt={item.monthly_payment} paidAmount={10} />
