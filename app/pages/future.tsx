@@ -126,7 +126,7 @@ export default function Savings() {
         <Text style={styles.logo}>fluid</Text>
         <br/>
       </div>
-      <Text style={styles.title}>Future</Text>
+      <Text style={styles.title}>Savings</Text>
             <ScrollView style={styles.stepContainer}>
                 <Text style={styles.textContainer}>
                     Current Account Balance: {userData.balance}

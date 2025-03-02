@@ -23,17 +23,17 @@ const NavBar = () => {
 
       {/* Custom Touchable button for "Go to Past" */}
       <TouchableOpacity style={styles.button} onMouseEnter={(event: { target: any; }) => onMouseOver(event)} onMouseOut={(event: any) => onMouseOut(event)} onPress={() => router.push('pages/past')}>
-        My Past
+        Debts
       </TouchableOpacity>
 
       {/* Custom Touchable button for "Go to Present" */}
       <TouchableOpacity style={styles.button} onMouseEnter={(event: { target: any; }) => onMouseOver(event)} onMouseOut={(event: any) => onMouseOut(event)} onPress={() => router.push('pages/present')}>
-        My Present
+        Credit Score
       </TouchableOpacity>
 
       {/* Custom Touchable button for "Go to Future" */}
       <TouchableOpacity style={styles.button} onMouseEnter={(event: { target: any; }) => onMouseOver(event)} onMouseOut={(event: any) => onMouseOut(event)} onPress={() => router.push('pages/future')}>
-        My Future
+        Savings
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onMouseEnter={(event: { target: any; }) => onMouseOver(event)} onMouseOut={(event: any) => onMouseOut(event)} onPress={() => router.push('/')}>
         Log Out
