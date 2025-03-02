@@ -51,10 +51,12 @@ export default function Past() {
 
     return (
         <View style={styles.container}>
-                      <Text style={styles.logo}>fluid</Text>
+                <div style = {styles.banner}>
+      <Text style={styles.logo}>fluid</Text>
+      <Text style={styles.title}>Debt</Text>
+      </div>
         <ScrollView contentContainerStyle={styles.container}>
             <View style={[styles_local.titleContainer, { width: availableSpace }]}>
-                <Text style={styles.title}>Debts</Text>
             </View>
             <View>
                 <Text style={styles.text}>With the Capital One API, we can keep track of your loans and your progress toward monthly payments. When you make a transaction on your card to pay the loan, we update your  trackers.</Text>

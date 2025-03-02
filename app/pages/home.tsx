@@ -37,8 +37,10 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+      <div style = {styles.banner}>
       <Text style={styles.logo}>fluid</Text>
       <Text style={styles.title}>Home</Text>
+      </div>
       <NavBar />
 
       <Text style={styles.title}>Your Fish</Text>

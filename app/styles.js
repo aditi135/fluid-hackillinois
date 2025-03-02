@@ -2,6 +2,13 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  banner: {
+    top: 0,
+    left: 0,
+    right: 0,
+    padding: 20,
+    zIndex: 0,
+  },
   logo: {
     position: 'absolute',
     top: 0,
@@ -13,6 +20,14 @@ const styles = StyleSheet.create({
     fontSize: 72,
     fontWeight: 'bold',
     fontFamily: 'Zain',
+  },
+  title: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    fontFamily: 'Zain',
+    color: '#04080F',
+    marginBottom: 20,
+    zIndex: 1,
   },
   container: {
     fontFamily: 'Lexend',
@@ -35,14 +50,6 @@ const styles = StyleSheet.create({
     height: 200, // Height of the wave
     overflow: 'hidden',
     zIndex: -1, // Ensure it stays behind the login form
-  },
-  title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    fontFamily: 'Zain',
-    color: '#04080F',
-    marginBottom: 20,
-    zIndex: 1,
   },
   loginSection: {
     fontFamily: 'Lexend',

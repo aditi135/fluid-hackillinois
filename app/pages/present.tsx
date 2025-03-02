@@ -28,8 +28,10 @@ export default function Present() {
     }, []);
   return (
     <View style={styles.container}>
-        <Text style={styles.logo}>fluid</Text>
-        <Text style={styles.title}>Credit Score Tracker</Text>
+        <div style = {styles.banner}>
+      <Text style={styles.logo}>fluid</Text>
+      <Text style={styles.title}>Credit Score Tracker</Text>
+      </div>
         <Text style={styles.text}>Tracking your credit score is a great way to practice financial literacy. For every 10 points you raise your estimated credit score, you will get one mystery aquatic creature for your aquarium!</Text>
 
         <Text style={styles.text}> Credit Score Estimate: &nbsp;
