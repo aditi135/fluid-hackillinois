@@ -45,7 +45,7 @@ const stylesLocal = StyleSheet.create({
   thermometer: {
     width: width * 0.3,  // 30% of screen width for the thermometer's width (adjustable)
     height: 30,  // Fixed height for the thermometer
-    backgroundColor: '#e0e0e0',  // Light gray background for the thermometer
+    backgroundColor: '#DAE3E5',  // Light gray background for the thermometer
     borderRadius: 15,  // Rounded corners for the tube
     overflow: 'hidden', // Ensure the filled part stays within the boundaries
     borderWidth: 2, // Optional: border to define the thermometer shape
@@ -58,7 +58,7 @@ const stylesLocal = StyleSheet.create({
   },
   filledBar: {
     height: '100%',  // Full height of the thermometer tube
-    backgroundColor: '#ff7f7f',  // Lighter red for the liquid
+    backgroundColor: '#507DBC',  // Lighter red for the liquid
     position: 'absolute',
     left: 0,  // Ensure it starts filling from the left
   },

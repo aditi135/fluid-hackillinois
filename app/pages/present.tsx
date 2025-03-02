@@ -28,7 +28,7 @@ export default function Present() {
   return (
     <View style={styles.container}>
         <Text style={styles.logo}>fluid</Text>
-        <Text style={styles.text}>Present Tab</Text>
+        <Text style={styles.title}>Present</Text>
 
         <Text style={styles.text}> Credit Score Estimate: &nbsp;
             {
