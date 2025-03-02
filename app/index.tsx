@@ -4,8 +4,7 @@ import Wave from 'react-native-waves'; // Import the Wave component
 import { useRouter } from 'expo-router'; // Importing useRouter for navigation
 import axios from 'axios'; // Import axios for making HTTP requests
 
-import publicIP from 'react-native-public-ip';
-
+import secrets from "./secrets.js";
 
 // const dns = require('node:dns');
 // const os = require('os');
@@ -16,51 +15,39 @@ const options = { family: 4 };
 export default function Index() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [userInfo, setUserInfo] = useState('');
     const router = useRouter();  // This is how to get the router instance
-    publicIP()
-    .then(ip => {    
-        setIP(ip);
-    })
-    .catch(error => {
-        console.log(error);
-        // 'Unable to get IP address.'
-    });
 
 
   // Function to create a test user
-  const createTestUsers = async () => {
-    // user 1 - admin
-    try {
+    const createTestUsers = async () => {
+        // user 1 - admin
+        try {
+            const response = await axios.post(`http://localhost:8080/createUser`, {
+                username: 'admin',
+                password: 'password'
+            });
+            console.log('Test user created:', response.data);
+        } catch (error) {
+            console.error('Error creating user:', error);
+        }
+        // user 2 - herc
+        try {
         const response = await axios.post(`http://localhost:8080/createUser`, {
-            username: 'admin',
-            password: 'password'
+            username: 'herc733',
+            password: 'iluvmeg!'
         });
         console.log('Test user created:', response.data);
-    } catch (error) {
-        console.error('Error creating user:', error);
-    }
-    // user 2 - herc
-    try {
-      const response = await axios.post(`http://localhost:8080/createUser`, {
-        username: 'herc733',
-        password: 'iluvmeg!'
-      });
-      console.log('Test user created:', response.data);
-    } catch (error) {
-        console.error('Error creating user:', error);
-    }
-};
+        } catch (error) {
+            console.error('Error creating user:', error);
+        }
+    };
 
-  const handleLogin = async () => {
-    if (username === '' || password === '') {
-      Alert.alert('Error', 'Please enter both username and password');
-      return;
-    }
-  
-    try {
-      // Send request to backend to check if username exists and validate password
-      console.log(`http://localhost:8080/login`);
+    const handleLogin = async () => {
+        if (username === '' || password === '') {
+            Alert.alert('Error', 'Please enter both username and password');
+            return;
+        }
+        // Send request to backend to check if username exists and validate password
         const response = await fetch(`http://localhost:8080/login`, {
             method: 'POST',
             headers: {
@@ -71,18 +58,13 @@ export default function Index() {
                 password: password,
             }),
         });
-    
-        if(response.ok) {
-            // If login is successful, navigate to home page
-            Alert.alert('Login Successful', `Welcome, ${username}!`);
-            router.push('pages/home');  // Redirect to home screen
-            console.log(response);
+        if (response.ok) {
+            const data = await response.json();  // Await the json() method to resolve the promise
+            secrets.customer_id = data.user_info.customer_id;
+            secrets.account_id = data.user_info.account_id;
+            router.push("pages/home");
         }
-        } catch (error) {
-            console.error('Login error:', error);
-            Alert.alert('Error', 'Incorrect username or password.');
-        }
-  };
+    };
   
   // For testing: create the test user on component mount
   React.useEffect(() => {
