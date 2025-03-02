@@ -51,6 +51,7 @@ export default function Past() {
 
     return (
         <View style={styles.container}>
+                      <Text style={styles.logo}>fluid</Text>
         <ScrollView contentContainerStyle={styles.container}>
             <View style={[styles_local.titleContainer, { width: availableSpace }]}>
                 <Text style={styles.title}>Debts</Text>
@@ -90,7 +91,6 @@ export default function Past() {
                       })
                 }
             </View>
-            <Text style={styles.logo}>fluid</Text>
             </ScrollView>
             <NavBar />
         </View>

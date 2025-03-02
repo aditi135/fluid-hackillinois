@@ -111,11 +111,12 @@ export default function Savings() {
 
     return (
         <View style={styles.container}>
-            
+                  <div>
+        <Text style={styles.logo}>fluid</Text>
+        <br/>
+      </div>
+      <Text style={styles.title}>Future</Text>
             <ScrollView style={styles.stepContainer}>
-                <Text style={styles.titleContainer}>
-                    Future
-                </Text>
                 <Text style={styles.textContainer}>
                     Current Account Balance: {userData.balance}
                 </Text>
@@ -228,6 +229,7 @@ const styles_local = StyleSheet.create({
         justifyContent: 'flex-start', // Align items to the top
         alignItems: 'center',
         position: 'relative',
+        fontFamily: 'Lexend',
         paddingTop: 20,
         paddingHorizontal: 20, // Ensure there is padding to prevent items from touching the edges
     },
@@ -237,7 +239,7 @@ const styles_local = StyleSheet.create({
         marginBottom: 20, // Add space below the title
     },
     title: {
-        fontFamily: 'Lexend',
+        fontFamily: 'Zain',
         fontSize: 40,
         fontWeight: 'bold',
         color: '#333',

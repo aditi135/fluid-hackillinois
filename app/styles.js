@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Zain',
     color: '#04080F',
-    marginBottom: 40,
+    marginBottom: 20,
     zIndex: 1,
   },
   loginSection: {
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         fontSize: 20,
+        fontFamily: 'Lexend',
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 20,
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     button: {
-        backgroundColor: '#007BFF',
+        backgroundColor: '#507DBC',
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
