@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, TextInput, Button, StyleSheet, Alert, Dimensions } from 'react-native';
 import Wave from 'react-native-waves'; // Import the Wave component
 import { useRouter } from 'expo-router'; // Importing useRouter for navigation
+import axios from 'axios'; // Import axios for making HTTP requests
 
 
 export default function Index() {
@@ -9,17 +10,60 @@ export default function Index() {
   const [password, setPassword] = useState('');
   const router = useRouter();  // This is how to get the router instance
 
-  // Handle login
-  const handleLogin = () => {
-    if (username === '' || password === '') {
-      Alert.alert('Error', 'Please enter both username and password');
-    } else {
-      Alert.alert('Login Successful', `Welcome, ${username}!`);
-      
-      // Navigate to the "home" screen after successful login
-      router.push('pages/home');  // This will push to the /home route
+
+  // Function to create a test user
+  const createTestUsers = async () => {
+    // user 1 - admin
+    try {
+      const response = await axios.post('http://localhost:5000/createUser', {
+        username: 'admin',
+        password: 'password'
+      });
+      console.log('Test user created:', response.data);
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
+    // user 2 - herc
+    try {
+      const response = await axios.post('http://localhost:5000/createUser', {
+        username: 'herc733',
+        password: 'iluvmeg!'
+      });
+      console.log('Test user created:', response.data);
+    } catch (error) {
+      console.error('Error creating user:', error);
     }
   };
+
+  const handleLogin = async () => {
+    if (username === '' || password === '') {
+      Alert.alert('Error', 'Please enter both username and password');
+      return;
+    }
+  
+    try {
+      // Send request to backend to check if username exists and validate password
+      const response = await axios.post('http://localhost:5000/login', {
+        username,
+        password,
+      });
+  
+      if (response.data.success) {
+        // If login is successful, navigate to home page
+        Alert.alert('Login Successful', `Welcome, ${username}!`);
+        router.push('pages/home');  // Redirect to home screen
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      Alert.alert('Error', 'Incorrect username or password.');
+    }
+  };
+  
+  // For testing: create the test user on component mount
+  React.useEffect(() => {
+    createTestUsers();
+  }, []);
+
 
   return (
     <View style={styles.container}>
