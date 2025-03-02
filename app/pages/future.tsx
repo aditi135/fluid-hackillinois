@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Modal, TextInput } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Modal, TextInput, Alert } from 'react-native';
 import NavBar from '../../components/NavBar'; // Import the NavBar component
 import HealthBar from '../../components/HealthBar'; // Import the Thermometer-themed HealthBar component
 import { Picker } from '@react-native-picker/picker';
@@ -16,6 +16,7 @@ export default function Savings() {
     // set savings goals
     const [modalVisible, setModalVisible] = useState(false);
     const [modal2Visible, setModal2Visible] = useState(false);
+    const [gotFish, setGotFish] = useState(false);
     const [goal, setGoal] = useState("");
     const [cost, setCost] = useState("");
 
@@ -71,6 +72,9 @@ export default function Savings() {
     const toggle2Modal = () => {
         setModal2Visible(!modal2Visible);
     };
+    const toggleFish = () => {
+        setGotFish(!gotFish);
+    };
 
     const saveGoal = async () => {
         //  update database
@@ -98,13 +102,20 @@ export default function Savings() {
     };
 
     const updateGoal = async () => {
+        let idx = 0;
         goals.forEach((item) => {
-            console.log(cost);
+            console.log(parseInt(cost));
             console.log(selectedValue)
-            console.log(item.progress);
+            console.log(parseInt(item.progress));
             if (item.name == selectedValue) {
-                item.progress = item.progress + cost;
+                item.progress = parseInt(item.progress) + parseInt(cost);
+                userData.balance -= parseInt(cost);
+                if (item.progress >= item.amt) {
+                    toggleFish();
+                    goals.splice(idx, idx);
+                }
             }
+            idx++;
         });
         toggleModal();
     }
@@ -199,6 +210,22 @@ export default function Savings() {
                             </TouchableOpacity>
                         </View>
                     </View>
+                </Modal>
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={gotFish}
+                    onRequestClose={toggleFish}
+                >
+                    <View style={styles.modalBackground}>
+                    <View style={styles.modalContainer}>
+                    <Text style={styles.text}>Congratulations!</Text>
+                    <Text style={styles.text}>You've reached your savings goal and have a new fish for your aquarium. Nice job!</Text>
+                    <TouchableOpacity onPress={toggleFish} style={styles.button}>
+                        <Text style={styles.buttonText}>Close</Text>
+                    </TouchableOpacity>
+                    </View></View>
                 </Modal>
 
                 <View style={styles_local.healthBars}>
