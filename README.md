@@ -1,5 +1,7 @@
 # fluid
 
+[See our demo video and hackathon submission here!](https://devpost.com/software/fluid-xnmh81?ref_content=my-projects-tab&ref_feature=my_projects)
+
 [Try Fluid here!](https://fluid-08e12e--4r8yipyc3r.expo.app/)
 
 Fluid is a project for HackIllinois 2025.
